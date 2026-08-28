@@ -20,6 +20,9 @@
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
+  html{
+    scroll-behavior:smooth;
+  }
   html,body{
     height:100%;
     background:var(--pine-deep);
@@ -29,18 +32,23 @@
 
   a{text-decoration:none;color:inherit;}
 
-  /* ---------- Top contact bar ---------- */
+  /* ---------- Top navigation bar (fixed, frosted glass) ---------- */
   .topbar{
-    position:absolute;
+    position:fixed;
     top:0; left:0; right:0;
-    z-index:30;
-    display:flex;
+    z-index:50;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
     align-items:center;
-    justify-content:space-between;
-    padding:18px clamp(20px,5vw,64px);
+    gap:28px;
+    padding:16px clamp(20px,5vw,64px);
     font-size:12.5px;
     letter-spacing:.04em;
     color:var(--linen-dim);
+    background:rgba(17,36,29,.5);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(231,205,140,.14);
   }
   .topbar .mark{
     font-family:'Barlow Condensed',sans-serif;
@@ -49,11 +57,45 @@
     letter-spacing:.06em;
     color:var(--linen);
     text-transform:uppercase;
+    white-space:nowrap;
   }
   .topbar .mark span{color:var(--brass-light);}
+
+  /* premium hover-underline page tabs */
+  .nav-links{
+    display:flex;
+    justify-content:center;
+    gap:clamp(20px,3vw,40px);
+  }
+  .nav-links a{
+    position:relative;
+    font-family:'Poppins',sans-serif;
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--linen-dim);
+    padding:6px 1px;
+    transition:color .3s ease, letter-spacing .3s ease;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:1px;
+    background:var(--brass-light);
+    transition:width .4s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover{ color:var(--brass-light); letter-spacing:.18em; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-links a.active{ color:var(--brass-light); }
+  .nav-links a.active::after{ width:100%; }
+
   .topbar .contacts{
     display:flex;
     gap:26px;
+    justify-self:end;
   }
   .topbar .contacts a{
     display:flex;
@@ -63,9 +105,14 @@
   }
   .topbar .contacts a:hover{color:var(--brass-light);}
   .topbar svg{width:14px;height:14px;flex:none;opacity:.9;}
+
+  @media (max-width:900px){
+    .nav-links{ display:none; }
+    .topbar{ grid-template-columns:auto auto; justify-content:space-between; }
+  }
   @media (max-width:640px){
     .topbar .contacts a span.txt{display:none;}
-    .topbar{padding:16px 20px;}
+    .topbar{padding:14px 20px;}
   }
 
   /* ---------- Hero shell ---------- */
@@ -76,6 +123,7 @@
     overflow:hidden;
     display:flex;
     align-items:center;
+    scroll-margin-top:0;
   }
 
   .bg-slide{
@@ -289,6 +337,7 @@
     background:var(--linen);
     padding:clamp(76px,10vw,128px) 0;
     overflow:hidden;
+    scroll-margin-top:76px;
   }
   /* soft sage wash to keep the light section from feeling flat/white */
   .about::before{
@@ -400,6 +449,14 @@
 
   <div class="topbar">
     <div class="mark">Hudson Elite <span>Home Care</span></div>
+
+    <nav class="nav-links">
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="mailto:HudsonElitehomecare@gmail.com?subject=Inquiry">Contact</a>
+    </nav>
+
     <div class="contacts">
       <a href="tel:+18453706019" aria-label="Call Hudson Elite Home Care">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -412,7 +469,7 @@
     </div>
   </div>
 
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="bg-slide s1"></div>
     <div class="bg-slide s2"></div>
     <div class="bg-slide s3"></div>
