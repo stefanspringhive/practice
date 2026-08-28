@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hudson Elite Home Care</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+  :root{
+    --pine-deep:#16332A;
+    --forest:#20402F;
+    --brass:#C69C4E;
+    --brass-light:#E7CD8C;
+    --linen:#F6F2E9;
+    --linen-dim:#D9D2C2;
+    --ink:#17140F;
+    --sage:#9FBBA6;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    height:100%;
+    background:var(--pine-deep);
+    font-family:'Poppins',sans-serif;
+    color:var(--linen);
+  }
+
+  a{text-decoration:none;color:inherit;}
+
+  /* ---------- Top contact bar ---------- */
+  .topbar{
+    position:absolute;
+    top:0; left:0; right:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px clamp(20px,5vw,64px);
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--linen-dim);
+  }
+  .topbar .mark{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.06em;
+    color:var(--linen);
+    text-transform:uppercase;
+  }
+  .topbar .mark span{color:var(--brass-light);}
+  .topbar .contacts{
+    display:flex;
+    gap:26px;
+  }
+  .topbar .contacts a{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    transition:color .2s ease;
+  }
+  .topbar .contacts a:hover{color:var(--brass-light);}
+  .topbar svg{width:14px;height:14px;flex:none;opacity:.9;}
+  @media (max-width:640px){
+    .topbar .contacts a span.txt{display:none;}
+    .topbar{padding:16px 20px;}
+  }
+
+  /* ---------- Hero shell ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    min-height:100svh;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+  }
+
+  .bg-slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:crossfade 24s infinite, kenburns 24s infinite;
+    will-change:opacity, transform;
+  }
+  .bg-slide.s1{ background-image:url('https://images.unsplash.com/photo-1554331292-735256644d5f?fm=jpg&q=80&w=2200&auto=format&fit=crop'); animation-delay:0s, 0s; }
+  .bg-slide.s2{ background-image:url('https://images.unsplash.com/photo-1559234938-b60fff04894d?fm=jpg&q=80&w=2200&auto=format&fit=crop'); animation-delay:8s, 8s; }
+  .bg-slide.s3{ background-image:url('https://images.unsplash.com/photo-1513159446162-54eb8bdaa79b?fm=jpg&q=80&w=2200&auto=format&fit=crop'); animation-delay:16s, 16s; }
+
+  @keyframes crossfade{
+    0%   { opacity:0; }
+    6%   { opacity:1; }
+    30%  { opacity:1; }
+    38%  { opacity:0; }
+    100% { opacity:0; }
+  }
+  @keyframes kenburns{
+    0%   { transform:scale(1); }
+    100% { transform:scale(1.09); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bg-slide{ animation:none; opacity:0; }
+    .bg-slide.s1{ opacity:1; }
+  }
+
+  .overlay{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(100deg,
+        rgba(15,31,25,.96) 0%,
+        rgba(16,34,27,.90) 32%,
+        rgba(16,34,27,.62) 56%,
+        rgba(16,34,27,.28) 78%,
+        rgba(16,34,27,.12) 100%);
+    z-index:1;
+  }
+  .overlay::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(10,20,16,.55) 0%, rgba(10,20,16,0) 24%, rgba(10,20,16,0) 78%, rgba(10,20,16,.5) 100%);
+  }
+
+  /* ---------- Content ---------- */
+  .content{
+    position:relative;
+    z-index:5;
+    max-width:660px;
+    padding:120px clamp(20px,6vw,72px) 60px;
+  }
+
+  .eyebrow{
+    font-family:'Poppins',sans-serif;
+    font-weight:500;
+    font-size:12.5px;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--sage);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:34px; height:1px;
+    background:var(--brass);
+    display:inline-block;
+  }
+
+  h1{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:clamp(46px, 8vw, 88px);
+    line-height:.94;
+    letter-spacing:.005em;
+    color:var(--linen);
+  }
+  h1 .accent{ color:var(--brass-light); }
+
+  /* signature: breathing hairline + monogram */
+  .signature{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin:30px 0 28px;
+  }
+  .signature .line{
+    height:1px;
+    width:96px;
+    background:var(--brass);
+    box-shadow:0 0 0 rgba(198,156,78,0);
+    animation:breathe 4.5s ease-in-out infinite;
+  }
+  .signature .monogram{
+    width:38px; height:38px;
+    border:1px solid var(--brass);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:.04em;
+    color:var(--brass-light);
+    animation:breathe-badge 4.5s ease-in-out infinite;
+  }
+  @keyframes breathe{
+    0%,100%{ box-shadow:0 0 0px rgba(198,156,78,0); opacity:.75; }
+    50%    { box-shadow:0 0 14px rgba(198,156,78,.55); opacity:1; }
+  }
+  @keyframes breathe-badge{
+    0%,100%{ box-shadow:0 0 0px rgba(198,156,78,0); }
+    50%    { box-shadow:0 0 10px rgba(198,156,78,.4); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .signature .line, .signature .monogram{ animation:none; }
+  }
+
+  .tagline{
+    font-family:'Poppins',sans-serif;
+    font-weight:500;
+    font-size:clamp(19px,2.2vw,23px);
+    color:var(--brass-light);
+    margin-bottom:16px;
+  }
+
+  .description{
+    font-family:'Poppins',sans-serif;
+    font-weight:300;
+    font-size:16px;
+    line-height:1.75;
+    color:var(--linen-dim);
+    max-width:520px;
+    margin-bottom:38px;
+  }
+
+  .cta-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:46px;
+  }
+  .btn{
+    font-family:'Poppins',sans-serif;
+    font-weight:500;
+    font-size:14.5px;
+    letter-spacing:.03em;
+    padding:16px 30px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .btn-primary{
+    background:var(--brass);
+    color:var(--pine-deep);
+    border:1px solid var(--brass);
+  }
+  .btn-primary:hover{
+    background:var(--brass-light);
+    transform:translateY(-2px);
+  }
+  .btn-secondary{
+    background:transparent;
+    color:var(--linen);
+    border:1px solid rgba(246,242,233,.45);
+  }
+  .btn-secondary:hover{
+    border-color:var(--brass-light);
+    color:var(--brass-light);
+    transform:translateY(-2px);
+  }
+  .btn svg{width:15px;height:15px;}
+
+  .trust-strip{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:14px;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--sage);
+    font-weight:500;
+  }
+  .trust-strip .dot{
+    width:3px; height:3px;
+    border-radius:50%;
+    background:var(--brass);
+    display:inline-block;
+  }
+
+  @media (max-width:640px){
+    .content{ padding-top:150px; }
+    .cta-group{ flex-direction:column; align-items:flex-start; width:100%; }
+    .btn{ width:100%; justify-content:center; }
+  }
+
+  /* focus visibility */
+  a:focus-visible, .btn:focus-visible{
+    outline:2px solid var(--brass-light);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="mark">Hudson Elite <span>Home Care</span></div>
+    <div class="contacts">
+      <a href="tel:+18453706019" aria-label="Call Hudson Elite Home Care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="txt">(845) 370-6019</span>
+      </a>
+      <a href="mailto:HudsonElitehomecare@gmail.com" aria-label="Email Hudson Elite Home Care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+        <span class="txt">HudsonElitehomecare@gmail.com</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="bg-slide s1"></div>
+    <div class="bg-slide s2"></div>
+    <div class="bg-slide s3"></div>
+    <div class="overlay"></div>
+
+    <div class="content">
+      <p class="eyebrow">Arlington, New York · Licensed Home Care Agency</p>
+
+      <h1>Hudson Elite<br><span class="accent">Home Care</span></h1>
+
+      <div class="signature">
+        <span class="line"></span>
+        <span class="monogram">HE</span>
+      </div>
+
+      <p class="tagline">Compassionate care, right at home.</p>
+
+      <p class="description">
+        From companionship and daily living support to dedicated personal care, our caregivers help your loved ones live safely, comfortably, and with dignity — in the place they know best. Proudly serving families throughout the Hudson Valley.
+      </p>
+
+      <div class="cta-group">
+        <a class="btn btn-primary" href="mailto:HudsonElitehomecare@gmail.com?subject=Free%20Consultation%20Request">
+          Schedule a Free Consultation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-secondary" href="tel:+18453706019">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call (845) 370-6019
+        </a>
+      </div>
+
+      <div class="trust-strip">
+        <span>Licensed &amp; Insured</span>
+        <span class="dot"></span>
+        <span>Family-Owned &amp; Operated</span>
+        <span class="dot"></span>
+        <span>Serving the Hudson Valley</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
