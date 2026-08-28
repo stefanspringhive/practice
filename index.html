@@ -283,6 +283,112 @@
     .btn{ width:100%; justify-content:center; }
   }
 
+  /* ---------- About section (balanced light background) ---------- */
+  .about{
+    position:relative;
+    background:var(--linen);
+    padding:clamp(76px,10vw,128px) 0;
+    overflow:hidden;
+  }
+  /* soft sage wash to keep the light section from feeling flat/white */
+  .about::before{
+    content:'';
+    position:absolute;
+    top:-20%; right:-12%;
+    width:52%; height:140%;
+    background:radial-gradient(closest-side, rgba(159,187,166,.22), rgba(159,187,166,0) 72%);
+    pointer-events:none;
+  }
+
+  .about-grid{
+    position:relative;
+    z-index:2;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+    display:grid;
+    grid-template-columns:0.85fr 1fr;
+    gap:clamp(44px,6vw,88px);
+    align-items:center;
+  }
+
+  .about-media-wrap{ position:relative; }
+  .about-media-wrap::after{
+    content:'';
+    position:absolute;
+    top:20px; left:20px; right:-20px; bottom:-20px;
+    border:1px solid var(--brass);
+    z-index:0;
+  }
+  .about-media{
+    position:relative;
+    z-index:1;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    border-radius:2px;
+    background:var(--forest);
+    box-shadow:0 34px 70px rgba(22,51,42,.22);
+  }
+  .bg-slide.a1{ background-image:url('https://images.unsplash.com/photo-1543333995-a78aea2eee50?fm=jpg&q=80&w=1600&auto=format&fit=crop'); animation-delay:0s, 0s; }
+  .bg-slide.a2{ background-image:url('https://images.unsplash.com/photo-1508963493744-76fce69379c0?fm=jpg&q=80&w=1600&auto=format&fit=crop'); animation-delay:8s, 8s; }
+  .bg-slide.a3{ background-image:url('https://images.unsplash.com/photo-1454875392665-2ac2c85e8d3e?fm=jpg&q=80&w=1600&auto=format&fit=crop'); animation-delay:16s, 16s; }
+  @media (prefers-reduced-motion: reduce){
+    .bg-slide.a1{ opacity:1; }
+  }
+
+  .eyebrow-dark{ color:var(--forest); }
+  .eyebrow-dark::before{ background:var(--brass); }
+
+  .about-content h2{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:clamp(34px,4.4vw,54px);
+    line-height:1.02;
+    color:var(--pine-deep);
+    margin:16px 0 26px;
+  }
+
+  .pull{
+    font-family:'Poppins',sans-serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:17px;
+    color:var(--forest);
+    border-left:2px solid var(--brass);
+    padding-left:18px;
+    margin:0 0 26px;
+  }
+
+  .body-copy{
+    font-family:'Poppins',sans-serif;
+    font-weight:300;
+    font-size:15.5px;
+    line-height:1.85;
+    color:#4A453B;
+    margin-bottom:20px;
+    max-width:520px;
+  }
+
+  .btn-dark{
+    background:var(--pine-deep);
+    color:var(--linen);
+    border:1px solid var(--pine-deep);
+    margin-top:10px;
+  }
+  .btn-dark:hover{
+    background:var(--forest);
+    border-color:var(--forest);
+    transform:translateY(-2px);
+  }
+  .btn-dark:focus-visible{ outline-color:var(--forest); }
+
+  @media (max-width:860px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-media-wrap{ max-width:380px; margin:0 auto 8px; }
+    .about-media-wrap::after{ top:14px; left:14px; right:-14px; bottom:-14px; }
+  }
+
   /* focus visibility */
   a:focus-visible, .btn:focus-visible{
     outline:2px solid var(--brass-light);
@@ -345,6 +451,38 @@
         <span>Family-Owned &amp; Operated</span>
         <span class="dot"></span>
         <span>Serving the Hudson Valley</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-media-wrap">
+        <div class="about-media">
+          <div class="bg-slide a1"></div>
+          <div class="bg-slide a2"></div>
+          <div class="bg-slide a3"></div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="eyebrow eyebrow-dark">About Hudson Elite Home Care</p>
+
+        <h2>Care Built On Trust,<br>Rooted In Family</h2>
+
+        <blockquote class="pull">Because home is where healing happens best.</blockquote>
+
+        <p class="body-copy">
+          Hudson Elite Home Care LLC was founded on a simple belief: growing older shouldn't mean leaving home. We carefully match every client with caregivers who bring not just skill, but genuine warmth — treating each family member the way we'd want our own cared for.
+        </p>
+        <p class="body-copy">
+          Based in Arlington, New York, we proudly serve seniors and families throughout the Hudson Valley with personalized care plans, consistent caregivers, and a team that's always just a phone call away.
+        </p>
+
+        <a class="btn btn-dark" href="mailto:HudsonElitehomecare@gmail.com?subject=Learn%20More%20About%20Hudson%20Elite%20Home%20Care">
+          Learn More About Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </section>
