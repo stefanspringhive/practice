@@ -511,12 +511,42 @@
     box-shadow:0 36px 70px rgba(6,16,12,.45);
   }
 
+  .service-media{
+    position:relative;
+    margin:-38px -34px 0;
+    height:188px;
+    overflow:hidden;
+    border-radius:5px 5px 0 0;
+  }
+  .service-media img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:saturate(.9) brightness(.96);
+    transition:transform .6s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+  }
+  .service-card:hover .service-media img{
+    transform:scale(1.08);
+    filter:saturate(1) brightness(1);
+  }
+  .service-media::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(15,31,25,0) 45%, rgba(13,28,22,.62) 100%);
+    pointer-events:none;
+  }
+
   .service-icon{
+    position:relative;
+    z-index:2;
+    margin-top:-28px;
     width:54px; height:54px;
     border-radius:50%;
     border:1px solid var(--brass);
+    background:var(--pine-deep);
     display:flex; align-items:center; justify-content:center;
-    margin-bottom:24px;
+    margin-bottom:22px;
+    box-shadow:0 12px 26px rgba(6,16,12,.5);
     transition:background .4s ease, transform .5s ease;
   }
   .service-icon svg{ width:24px; height:24px; color:var(--brass-light); transition:color .4s ease; }
@@ -723,6 +753,9 @@
       <div class="services-grid">
 
         <article class="service-card">
+          <div class="service-media">
+            <img src="https://images.unsplash.com/photo-1751977979590-3554dd691c5e?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Seniors sitting together at a table, talking and laughing" loading="lazy">
+          </div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
@@ -743,6 +776,9 @@
         </article>
 
         <article class="service-card">
+          <div class="service-media">
+            <img src="https://images.unsplash.com/photo-1569508926450-cd832544c4ae?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Close-up of a caregiver gently holding a client's hand" loading="lazy">
+          </div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
           </div>
@@ -763,6 +799,9 @@
         </article>
 
         <article class="service-card">
+          <div class="service-media">
+            <img src="https://images.unsplash.com/photo-1749374848450-34bfa8600ecd?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="A tidy, sunlit kitchen interior" loading="lazy">
+          </div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
           </div>
@@ -783,6 +822,9 @@
         </article>
 
         <article class="service-card">
+          <div class="service-media">
+            <img src="https://images.unsplash.com/photo-1758273239676-ccfb81f6101e?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="A caregiver taking a peaceful moment to relax with a warm drink" loading="lazy">
+          </div>
           <div class="service-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
           </div>
